@@ -1,0 +1,1431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USA Reseller LLC | Telecommunications Engineering & Network Deployment</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a1a2e;
+            --primary-light: #16213e;
+            --secondary: #0f3460;
+            --accent: #e94560;
+            --accent-hover: #c73e54;
+            --accent-glow: rgba(233, 69, 96, 0.3);
+            --silver: #c0c0c0;
+            --silver-light: #e8e8e8;
+            --silver-dark: #8a8a8a;
+            --text: #f8f9fa;
+            --text-muted: #a0a0a0;
+            --text-dark: #6c757d;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Animated Background */
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(233, 69, 96, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(192, 192, 192, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(15, 52, 96, 0.3) 0%, transparent 50%);
+            animation: bgFloat 20s ease-in-out infinite;
+        }
+
+        @keyframes bgFloat {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -30px) rotate(1deg); }
+            66% { transform: translate(-20px, 20px) rotate(-1deg); }
+        }
+
+        /* Grid Pattern Overlay */
+        .grid-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(192, 192, 192, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(192, 192, 192, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            z-index: 1;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 0.75rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(26, 26, 46, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            padding: 0.5rem 2rem;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+            background: rgba(26, 26, 46, 0.95);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+            border-radius: 8px;
+            filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover img {
+            transform: scale(1.05);
+        }
+
+        .logo-text {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--silver-light);
+            letter-spacing: 1px;
+        }
+
+        .logo-text span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--silver);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            position: relative;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), var(--silver));
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--silver-light);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 2rem 4rem;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 3.2rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #fff 0%, var(--silver) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-text h1 span {
+            display: block;
+            background: linear-gradient(135deg, var(--accent) 0%, #ff6b6b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.15rem;
+            color: var(--silver);
+            margin-bottom: 2rem;
+            font-weight: 400;
+            line-height: 1.7;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1rem 1.5rem;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-number {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--accent);
+            display: block;
+            text-shadow: 0 0 20px rgba(233, 69, 96, 0.3);
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--silver-dark);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+            color: white;
+            box-shadow: 0 4px 20px var(--accent-glow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px var(--accent-glow);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--silver-light);
+            border: 2px solid rgba(192, 192, 192, 0.3);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: rgba(233, 69, 96, 0.1);
+        }
+
+        /* Hero Visual */
+        .hero-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 2rem;
+            width: 100%;
+            max-width: 400px;
+            backdrop-filter: blur(20px);
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.4),
+                0 0 0 1px rgba(255, 255, 255, 0.05);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--accent), #ff6b6b);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            box-shadow: 0 4px 15px rgba(233, 69, 96, 0.3);
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--silver-light);
+        }
+
+        .card-subtitle {
+            font-size: 0.85rem;
+            color: var(--silver-dark);
+        }
+
+        .status-list {
+            list-style: none;
+        }
+
+        .status-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .status-item:last-child {
+            border-bottom: none;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        .status-dot.green { background: var(--success); box-shadow: 0 0 10px var(--success); }
+        .status-dot.red { background: var(--accent); box-shadow: 0 0 10px var(--accent); }
+        .status-dot.orange { background: var(--warning); box-shadow: 0 0 10px var(--warning); }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+
+        .status-text {
+            font-size: 0.9rem;
+            color: var(--silver-dark);
+        }
+
+        .status-text strong {
+            color: var(--silver-light);
+            font-weight: 600;
+        }
+
+        /* Floating Elements */
+        .float-element {
+            position: absolute;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 1rem;
+            backdrop-filter: blur(10px);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .float-1 { top: -20px; right: -30px; animation-delay: 0s; }
+        .float-2 { bottom: -30px; left: -20px; animation-delay: 2s; }
+        .float-3 { top: 50%; right: -40px; animation-delay: 4s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(2deg); }
+        }
+
+        /* Section Styles */
+        section {
+            padding: 6rem 2rem;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 4rem;
+        }
+
+        .section-tag {
+            display: inline-block;
+            padding: 0.5rem 1.2rem;
+            background: rgba(233, 69, 96, 0.1);
+            border: 1px solid rgba(233, 69, 96, 0.2);
+            border-radius: 50px;
+            color: var(--accent);
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #fff 0%, var(--silver) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-desc {
+            font-size: 1.1rem;
+            color: var(--silver-dark);
+            line-height: 1.7;
+        }
+
+        /* Carriers Section */
+        .carriers-section {
+            background: linear-gradient(180deg, rgba(22, 33, 62, 0.5) 0%, rgba(15, 52, 96, 0.3) 100%);
+        }
+
+        .carriers-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .carrier-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .carrier-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--silver));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .carrier-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .carrier-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(233, 69, 96, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+        }
+
+        .carrier-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--accent), #ff6b6b);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 1.8rem;
+            color: white;
+            box-shadow: 0 10px 30px rgba(233, 69, 96, 0.3);
+        }
+
+        .carrier-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--silver-light);
+        }
+
+        .carrier-desc {
+            color: var(--silver-dark);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* Competencies Section */
+        .competencies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .competency-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .competency-card:hover {
+            border-color: rgba(233, 69, 96, 0.3);
+            transform: translateX(5px);
+            background: linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+        }
+
+        .competency-icon {
+            min-width: 45px;
+            height: 45px;
+            background: rgba(233, 69, 96, 0.15);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            font-size: 1.1rem;
+        }
+
+        .competency-text h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            color: var(--silver-light);
+        }
+
+        .competency-text p {
+            font-size: 0.85rem;
+            color: var(--silver-dark);
+            line-height: 1.5;
+        }
+
+        /* Certifications Section */
+        .certs-section {
+            background: linear-gradient(180deg, rgba(15, 52, 96, 0.3) 0%, rgba(22, 33, 62, 0.5) 100%);
+        }
+
+        .certs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .cert-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 1.5rem;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .cert-item:hover {
+            border-color: var(--success);
+            background: rgba(16, 185, 129, 0.05);
+            transform: translateX(5px);
+        }
+
+        .cert-icon {
+            color: var(--success);
+            font-size: 1.2rem;
+        }
+
+        .cert-text {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--silver-light);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: center;
+        }
+
+        .contact-info h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #fff 0%, var(--silver) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .contact-info > p {
+            color: var(--silver-dark);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: var(--text);
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-item:hover {
+            border-color: var(--accent);
+            background: rgba(233, 69, 96, 0.1);
+            transform: translateX(5px);
+        }
+
+        .contact-item-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--accent), #ff6b6b);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+            box-shadow: 0 4px 15px rgba(233, 69, 96, 0.3);
+        }
+
+        .contact-item-text h4 {
+            font-size: 0.8rem;
+            color: var(--silver-dark);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.25rem;
+            font-weight: 600;
+        }
+
+        .contact-item-text p {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--silver-light);
+        }
+
+        /* Contact Form */
+        .contact-form {
+            background: linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 2.5rem;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--silver-dark);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(26, 26, 46, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            color: var(--silver-light);
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--text-dark);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(233, 69, 96, 0.1);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(26, 26, 46, 0.8);
+            border-top: 1px solid var(--glass-border);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--silver-light);
+        }
+
+        .footer-logo img {
+            height: 40px;
+            width: auto;
+            border-radius: 6px;
+        }
+
+        .footer-logo span {
+            color: var(--accent);
+        }
+
+        .footer-text {
+            color: var(--silver-dark);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links a {
+            color: var(--silver-dark);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 500;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--glass-border);
+            padding-top: 1.5rem;
+            color: var(--text-dark);
+            font-size: 0.85rem;
+        }
+
+        /* Scroll Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-stats {
+                justify-content: center;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero-visual {
+                order: -1;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+
+            .carriers-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .competencies-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .logo-text {
+                display: none;
+            }
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--primary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--secondary);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <a href="#" class="logo">
+            <img src="logo.png" alt="USA Reseller LLC Logo">
+            <span class="logo-text">USA<span>Reseller</span> LLC</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#carriers">Carriers</a></li>
+            <li><a href="#competencies">Expertise</a></li>
+            <li><a href="#certifications">Certifications</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+            <i class="fas fa-bars"></i>
+        </button>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-bg">
+            <div class="grid-pattern"></div>
+        </div>
+
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>
+                    Telecommunications
+                    <span>Engineering Excellence</span>
+                </h1>
+                <p class="hero-subtitle">
+                    20+ years of hands-on experience in wireless and wireline infrastructure. 
+                    Supporting major U.S. carriers with Ericsson and Nokia systems across macro sites, 
+                    small cells, DAS, and fiber optics.
+                </p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">20+</span>
+                        <span class="stat-label">Years Experience</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">3</span>
+                        <span class="stat-label">Major Carriers</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">Safety Compliant</span>
+                    </div>
+                </div>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i>
+                        Get In Touch
+                    </a>
+                    <a href="#competencies" class="btn btn-outline">
+                        <i class="fas fa-list-check"></i>
+                        Our Services
+                    </a>
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <div class="hero-card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-signal"></i>
+                        </div>
+                        <div>
+                            <div class="card-title">Network Status</div>
+                            <div class="card-subtitle">Real-time Deployment</div>
+                        </div>
+                    </div>
+                    <ul class="status-list">
+                        <li class="status-item">
+                            <span class="status-dot green"></span>
+                            <span class="status-text"><strong>Ericsson</strong> Integration Active</span>
+                        </li>
+                        <li class="status-item">
+                            <span class="status-dot red"></span>
+                            <span class="status-text"><strong>Nokia</strong> Systems Online</span>
+                        </li>
+                        <li class="status-item">
+                            <span class="status-dot green"></span>
+                            <span class="status-text"><strong>Macro Sites</strong> Operational</span>
+                        </li>
+                        <li class="status-item">
+                            <span class="status-dot orange"></span>
+                            <span class="status-text"><strong>Small Cells</strong> Deploying</span>
+                        </li>
+                        <li class="status-item">
+                            <span class="status-dot green"></span>
+                            <span class="status-text"><strong>Fiber Optics</strong> Connected</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="float-element float-1">
+                    <i class="fas fa-tower-cell" style="color: var(--accent); font-size: 1.5rem;"></i>
+                </div>
+                <div class="float-element float-2">
+                    <i class="fas fa-network-wired" style="color: var(--success); font-size: 1.5rem;"></i>
+                </div>
+                <div class="float-element float-3">
+                    <i class="fas fa-satellite-dish" style="color: var(--warning); font-size: 1.5rem;"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Carriers Section -->
+    <section class="carriers-section" id="carriers">
+        <div class="section-header fade-in">
+            <span class="section-tag">Trusted Partners</span>
+            <h2 class="section-title">Carrier Experience</h2>
+            <p class="section-desc">Proven track record supporting the nation's leading wireless carriers with complex network deployments and infrastructure projects.</p>
+        </div>
+        <div class="carriers-grid">
+            <div class="carrier-card fade-in">
+                <div class="carrier-icon">
+                    <i class="fas fa-globe"></i>
+                </div>
+                <h3 class="carrier-name">AT&T</h3>
+                <p class="carrier-desc">Full-scale macro site builds, upgrades, and network optimization projects across multiple markets.</p>
+            </div>
+            <div class="carrier-card fade-in">
+                <div class="carrier-icon">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <h3 class="carrier-name">T-Mobile</h3>
+                <p class="carrier-desc">Small cell and DAS deployments, network densification, and coverage expansion initiatives.</p>
+            </div>
+            <div class="carrier-card fade-in">
+                <div class="carrier-icon">
+                    <i class="fas fa-wifi"></i>
+                </div>
+                <h3 class="carrier-name">Verizon</h3>
+                <p class="carrier-desc">Ericsson and Nokia integration, fiber backhaul, and site turn-up commissioning projects.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Competencies Section -->
+    <section id="competencies">
+        <div class="section-header fade-in">
+            <span class="section-tag">Technical Expertise</span>
+            <h2 class="section-title">Core Competencies</h2>
+            <p class="section-desc">Comprehensive telecommunications capabilities spanning wireless infrastructure, fiber optics, and network deployment.</p>
+        </div>
+        <div class="competencies-grid">
+            <div class="competency-card fade-in">
+                <div class="competency-icon">
+                    <i class="fas fa-microchip"></i>
+                </div>
+                <div class="competency-text">
+                    <h3>Ericsson & Nokia Installation</h3>
+                    <p>Expert installation and integration of RBS, radios, and baseband units for major carrier networks.</p>
+                </div>
+            </div>
+            <div class="competency-card fade-in">
+                <div class="competency-icon">
+                    <i class="fas fa-screwdriver-wrench"></i>
+                </div>
+                <div class="competency-text">
+                    <h3>Advanced Troubleshooting</h3>
+                    <p>Complex call testing, performance analysis, and rapid resolution of network issues in the field.</p>
+                </div>
+            </div>
+            <div class="competency-card fade-in">
+                <div class="competency-icon">
+                    <i class="fas fa-tower-broadcast"></i>
+                </div>
+                <div class="competency-text">
+                    <h3>Macro Site Projects</h3>
+                    <p>Full builds, upgrades, swap projects, and antenna installations for macro cell towers.</p>
+                </div>
+            </div>
+            <div class="competency-card fade-in">
+                <div class="competency-icon">
+                    <i class="fas fa-exchange-alt"></i>
+                </div>
+                <div class="competency-text">
+                    <h3>Vendor Conversions</h3>
+                    <p>Seamless Nokia to Ericsson conversions with minimal network disruption and full testing.</p>
+                </div>
+            </div>
+            <div class="competency-card fade-in">
+                <div class="competency-icon">
+                    <i class="fas fa-satellite"></i>
+                </div>
+                <div class="competency-text">
+                    <h3>Small Cell & DAS</h3>
+                    <p>Indoor and outdoor distributed antenna systems and small cell deployments for coverage gaps.</p>
+                </div>
+            </div>
+            <div class="competency-card fade-in">
+                <div class="competency-icon">
+                    <i class="fas fa-network-wired"></i>
+                </div>
+                <div class="competency-text">
+                    <h3>Fiber Optics</h3>
+                    <p>Splicing, OTDR testing, and OSP/ISP fiber builds for backhaul and fronthaul connectivity.</p>
+                </div>
+            </div>
+            <div class="competency-card fade-in">
+                <div class="competency-icon">
+                    <i class="fas fa-wave-square"></i>
+                </div>
+                <div class="competency-text">
+                    <h3>PIM & Sweep Testing</h3>
+                    <p>Passive intermodulation and return loss testing to ensure optimal RF performance.</p>
+                </div>
+            </div>
+            <div class="competency-card fade-in">
+                <div class="competency-icon">
+                    <i class="fas fa-broadcast-tower"></i>
+                </div>
+                <div class="competency-text">
+                    <h3>Microwave Backhaul</h3>
+                    <p>RF system installation, alignment, and commissioning for microwave transmission links.</p>
+                </div>
+            </div>
+            <div class="competency-card fade-in">
+                <div class="competency-icon">
+                    <i class="fas fa-power-off"></i>
+                </div>
+                <div class="competency-text">
+                    <h3>Site Turn-Ups</h3>
+                    <p>Complete site commissioning, integration testing, and handover to operations teams.</p>
+                </div>
+            </div>
+            <div class="competency-card fade-in">
+                <div class="competency-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="competency-text">
+                    <h3>Crew Supervision</h3>
+                    <p>Leading field teams, managing workflows, and ensuring quality execution on complex projects.</p>
+                </div>
+            </div>
+            <div class="competency-card fade-in">
+                <div class="competency-icon">
+                    <i class="fas fa-shield-halved"></i>
+                </div>
+                <div class="competency-text">
+                    <h3>Safety Compliance</h3>
+                    <p>Rigorous adherence to OSHA, NFPA 70E, and carrier-specific safety protocols and audits.</p>
+                </div>
+            </div>
+            <div class="competency-card fade-in">
+                <div class="competency-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <div class="competency-text">
+                    <h3>Network Optimization</h3>
+                    <p>Performance tuning, parameter adjustments, and coverage optimization post-deployment.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section class="certs-section" id="certifications">
+        <div class="section-header fade-in">
+            <span class="section-tag">Safety First</span>
+            <h2 class="section-title">Certifications & Training</h2>
+            <p class="section-desc">Fully certified and trained to operate safely in high-risk telecommunications environments. All required credentials current and maintained.</p>
+        </div>
+        <div class="certs-grid">
+            <div class="cert-item fade-in">
+                <i class="fas fa-certificate cert-icon"></i>
+                <span class="cert-text">OSHA 30</span>
+            </div>
+            <div class="cert-item fade-in">
+                <i class="fas fa-certificate cert-icon"></i>
+                <span class="cert-text">NFPA 70E</span>
+            </div>
+            <div class="cert-item fade-in">
+                <i class="fas fa-certificate cert-icon"></i>
+                <span class="cert-text">Lockout / Tagout (LOTO)</span>
+            </div>
+            <div class="cert-item fade-in">
+                <i class="fas fa-certificate cert-icon"></i>
+                <span class="cert-text">RF Awareness</span>
+            </div>
+            <div class="cert-item fade-in">
+                <i class="fas fa-certificate cert-icon"></i>
+                <span class="cert-text">TTT1</span>
+            </div>
+            <div class="cert-item fade-in">
+                <i class="fas fa-certificate cert-icon"></i>
+                <span class="cert-text">First Aid / CPR / BBP</span>
+            </div>
+            <div class="cert-item fade-in">
+                <i class="fas fa-certificate cert-icon"></i>
+                <span class="cert-text">Heat Stress & HazCom</span>
+            </div>
+            <div class="cert-item fade-in">
+                <i class="fas fa-certificate cert-icon"></i>
+                <span class="cert-text">Aerial Lift (Boom Lift / Manlift)</span>
+            </div>
+            <div class="cert-item fade-in">
+                <i class="fas fa-certificate cert-icon"></i>
+                <span class="cert-text">Tower Climber & Rescuer (Train the Trainer)</span>
+            </div>
+            <div class="cert-item fade-in">
+                <i class="fas fa-certificate cert-icon"></i>
+                <span class="cert-text">Capstan Hoist Operator</span>
+            </div>
+            <div class="cert-item fade-in">
+                <i class="fas fa-certificate cert-icon"></i>
+                <span class="cert-text">Signal Person</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="section-header fade-in">
+            <span class="section-tag">Let's Connect</span>
+            <h2 class="section-title">Ready to Deploy</h2>
+            <p class="section-desc">Available for network deployment projects, site turn-ups, and telecommunications infrastructure work across the United States.</p>
+        </div>
+        <div class="contact-grid">
+            <div class="contact-info">
+                <h2>Get Your Network Online</h2>
+                <p>With 20+ years of field experience and deep expertise in Ericsson and Nokia systems, I'm ready to support your next telecommunications project from start to finish.</p>
+
+                <div class="contact-details">
+                    <a href="tel:786-567-0176" class="contact-item">
+                        <div class="contact-item-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-item-text">
+                            <h4>Phone</h4>
+                            <p>786-567-0176</p>
+                        </div>
+                    </a>
+                    <a href="mailto:usaresellermia@gmail.com" class="contact-item">
+                        <div class="contact-item-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-item-text">
+                            <h4>Email</h4>
+                            <p>usaresellermia@gmail.com</p>
+                        </div>
+                    </a>
+                    <div class="contact-item">
+                        <div class="contact-item-icon">
+                            <i class="fas fa-location-dot"></i>
+                        </div>
+                        <div class="contact-item-text">
+                            <h4>Location</h4>
+                            <p>2561 NW 84th Ave, Miami, FL 33122</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-form fade-in">
+                <form action="mailto:usaresellermia@gmail.com" method="post" enctype="text/plain">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" placeholder="Your name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="company">Company</label>
+                            <input type="text" id="company" name="company" placeholder="Your company">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="project">Project Type</label>
+                        <select id="project" name="project">
+                            <option value="">Select a service...</option>
+                            <option value="macro">Macro Site Build/Upgrade</option>
+                            <option value="smallcell">Small Cell / DAS Deployment</option>
+                            <option value="fiber">Fiber Optics / Backhaul</option>
+                            <option value="integration">Ericsson/Nokia Integration</option>
+                            <option value="troubleshooting">Troubleshooting & Testing</option>
+                            <option value="other">Other Project</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Project Details</label>
+                        <textarea id="message" name="message" placeholder="Tell me about your project, timeline, and requirements..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
+                        <i class="fas fa-paper-plane"></i>
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="logo.png" alt="USA Reseller LLC Logo">
+                USA<span>Reseller</span> LLC
+            </div>
+            <p class="footer-text">Telecommunications Engineering & Network Deployment Services</p>
+            <div class="footer-links">
+                <a href="#home">Home</a>
+                <a href="#carriers">Carriers</a>
+                <a href="#competencies">Services</a>
+                <a href="#certifications">Certifications</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 USA Reseller LLC. All rights reserved. | Miami, FL</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            navLinks.style.position = 'absolute';
+            navLinks.style.top = '100%';
+            navLinks.style.left = '0';
+            navLinks.style.right = '0';
+            navLinks.style.background = 'rgba(26, 26, 46, 0.95)';
+            navLinks.style.backdropFilter = 'blur(20px)';
+            navLinks.style.flexDirection = 'column';
+            navLinks.style.padding = '2rem';
+            navLinks.style.gap = '1.5rem';
+            navLinks.style.borderBottom = '1px solid rgba(255,255,255,0.1)';
+        }
+
+        // Close mobile menu on link click
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    document.querySelector('.nav-links').style.display = 'none';
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

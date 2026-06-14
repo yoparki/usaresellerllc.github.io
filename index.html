@@ -263,33 +263,39 @@
 
         .hero-stats {
             display: flex;
-            gap: 2rem;
+            gap: 1rem;
             margin-bottom: 2.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
         .stat-item {
             text-align: center;
-            padding: 1rem 1.5rem;
+            padding: 0.75rem 1rem;
             background: var(--glass);
             border: 1px solid var(--glass-border);
-            border-radius: 16px;
+            border-radius: 12px;
             backdrop-filter: blur(10px);
+            min-width: 80px;
         }
 
         .stat-number {
-            font-size: 2.2rem;
+            font-size: 1.8rem;
             font-weight: 800;
             color: var(--accent);
             display: block;
             text-shadow: 0 0 20px rgba(233, 69, 96, 0.3);
+            line-height: 1;
         }
 
         .stat-label {
-            font-size: 0.75rem;
+            font-size: 0.65rem;
             color: var(--silver-dark);
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
             font-weight: 600;
+            display: block;
+            margin-top: 0.25rem;
         }
 
         .hero-buttons {

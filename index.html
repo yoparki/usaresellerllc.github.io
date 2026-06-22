@@ -942,7 +942,202 @@
         ::-webkit-scrollbar-thumb:hover {
             background: var(--accent);
         }
-    </style>
+    
+        /* About Section */
+        .about-section {
+            background: var(--bg-secondary);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .about-text p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .about-stats {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .about-stat {
+            text-align: center;
+        }
+
+        .about-stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--accent);
+            display: block;
+        }
+
+        .about-stat-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 200px 200px;
+            gap: 1rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .gallery-item.large {
+            grid-row: span 2;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1rem;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* Projects Section */
+        .projects-section {
+            background: var(--bg-primary);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(0, 212, 170, 0.3);
+        }
+
+        .project-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover .project-image img {
+            transform: scale(1.1);
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-content h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .project-content p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .project-tags span {
+            padding: 0.25rem 0.75rem;
+            background: rgba(0, 212, 170, 0.1);
+            border: 1px solid rgba(0, 212, 170, 0.2);
+            border-radius: 50px;
+            color: var(--accent);
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        /* Responsive for new sections */
+        @media (max-width: 1024px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: 150px 150px;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-stats {
+                justify-content: center;
+            }
+        }
+</style>
 </head>
 <body>
 
@@ -954,8 +1149,10 @@
         </a>
         <ul class="nav-links">
             <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
             <li><a href="#carriers">Carriers</a></li>
             <li><a href="#competencies">Expertise</a></li>
+            <li><a href="#projects">Projects</a></li>
             <li><a href="#certifications">Certifications</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
@@ -1260,6 +1457,154 @@
         </div>
     </section>
 
+    
+    <!-- About / Personal Section -->
+    <section class="about-section" id="about">
+        <div class="section-header fade-in">
+            <span class="section-tag">About Me</span>
+            <h2 class="section-title">Field Operations Professional</h2>
+            <p class="section-desc">20+ years of hands-on experience in telecommunications infrastructure, from tower climbing to network commissioning.</p>
+        </div>
+        <div class="about-grid">
+            <div class="about-text fade-in">
+                <h3>Telecommunications Engineer</h3>
+                <p>Based in Miami, FL, I specialize in wireless and wireline infrastructure deployment across the United States. My work spans macro cell towers, small cells, DAS systems, and fiber optic networks for major carriers including AT&T, T-Mobile, and Verizon.</p>
+                <p>Certified in tower climbing, rescue operations, and all major safety protocols. Experienced with Ericsson and Nokia equipment installations, integrations, and troubleshooting.</p>
+                <div class="about-stats">
+                    <div class="about-stat">
+                        <span class="about-stat-number">20+</span>
+                        <span class="about-stat-label">Years Experience</span>
+                    </div>
+                    <div class="about-stat">
+                        <span class="about-stat-number">3</span>
+                        <span class="about-stat-label">Major Carriers</span>
+                    </div>
+                    <div class="about-stat">
+                        <span class="about-stat-number">100%</span>
+                        <span class="about-stat-label">Safety Record</span>
+                    </div>
+                </div>
+            </div>
+            <div class="about-gallery fade-in">
+                <div class="gallery-grid">
+                    <div class="gallery-item large">
+                        <img src="https://images.unsplash.com/photo-1581092921461-eab62e97a782?w=600" alt="Tower climber at work">
+                        <div class="gallery-overlay">
+                            <span>Tower Operations</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=400" alt="Safety equipment">
+                        <div class="gallery-overlay">
+                            <span>Safety First</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=400" alt="Network equipment">
+                        <div class="gallery-overlay">
+                            <span>Equipment Install</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Gallery Section -->
+    <section class="projects-section" id="projects">
+        <div class="section-header fade-in">
+            <span class="section-tag">Portfolio</span>
+            <h2 class="section-title">Projects Executed</h2>
+            <p class="section-desc">Real-world deployments across macro sites, fiber optics, and network infrastructure.</p>
+        </div>
+        <div class="projects-grid">
+            <div class="project-card fade-in">
+                <div class="project-image">
+                    <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600" alt="Macro Site Tower">
+                </div>
+                <div class="project-content">
+                    <h3>Macro Site Build</h3>
+                    <p>Full tower installation with Ericsson radios, antennas, and fiber backhaul for AT&T coverage expansion.</p>
+                    <div class="project-tags">
+                        <span>Ericsson</span>
+                        <span>Macro</span>
+                        <span>Fiber</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card fade-in">
+                <div class="project-image">
+                    <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=600" alt="Network Equipment">
+                </div>
+                <div class="project-content">
+                    <h3>Nokia Integration</h3>
+                    <p>Complete Nokia to Ericsson conversion with minimal service disruption and full performance testing.</p>
+                    <div class="project-tags">
+                        <span>Nokia</span>
+                        <span>Conversion</span>
+                        <span>Testing</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card fade-in">
+                <div class="project-image">
+                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600" alt="Fiber Optics">
+                </div>
+                <div class="project-content">
+                    <h3>Fiber Deployment</h3>
+                    <p>OSP/ISP fiber build with splicing, OTDR testing, and commissioning for backhaul connectivity.</p>
+                    <div class="project-tags">
+                        <span>Fiber</span>
+                        <span>Splicing</span>
+                        <span>OTDR</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card fade-in">
+                <div class="project-image">
+                    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=600" alt="Small Cell">
+                </div>
+                <div class="project-content">
+                    <h3>Small Cell & DAS</h3>
+                    <p>Indoor and outdoor distributed antenna systems for coverage gaps in urban environments.</p>
+                    <div class="project-tags">
+                        <span>Small Cell</span>
+                        <span>DAS</span>
+                        <span>Urban</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card fade-in">
+                <div class="project-image">
+                    <img src="https://images.unsplash.com/photo-1581092921461-eab62e97a782?w=600" alt="Tower Climbing">
+                </div>
+                <div class="project-content">
+                    <h3>Tower Upgrades</h3>
+                    <p>Antenna swaps, line installations, and PIM/sweep testing for optimized RF performance.</p>
+                    <div class="project-tags">
+                        <span>Upgrade</span>
+                        <span>PIM Test</span>
+                        <span>RF</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card fade-in">
+                <div class="project-image">
+                    <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600" alt="Site Commissioning">
+                </div>
+                <div class="project-content">
+                    <h3>Site Turn-Ups</h3>
+                    <p>Complete site commissioning, integration testing, and handover to carrier operations teams.</p>
+                    <div class="project-tags">
+                        <span>Commissioning</span>
+                        <span>Integration</span>
+                        <span>Handover</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact Section -->
     <section class="contact-section" id="contact">
         <div class="section-header fade-in">
@@ -1354,8 +1699,10 @@
             <p class="footer-text">Telecommunications Engineering & Network Deployment Services</p>
             <div class="footer-links">
                 <a href="#home">Home</a>
+                <a href="#about">About</a>
                 <a href="#carriers">Carriers</a>
                 <a href="#competencies">Services</a>
+                <a href="#projects">Projects</a>
                 <a href="#certifications">Certifications</a>
                 <a href="#contact">Contact</a>
             </div>
